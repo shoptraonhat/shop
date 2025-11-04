@@ -192,6 +192,7 @@
       alert('Sản phẩm đã hết hàng!');
       return;
     }
+
     let found = cart.find(item => item.code === code);
     if (found) {
       found.quantity++;
@@ -278,7 +279,7 @@
 
     renderTopProducts();
 
-    let zaloPhone = '0388965638';
+    let zaloPhone = '0123456789';
     let zaloUrl = `https://zalo.me/${zaloPhone}?text=${encodeURIComponent(orderDetails)}`;
     window.open(zaloUrl, '_blank');
 
@@ -295,10 +296,27 @@
       if (count > 0) {
         let productName = '';
         let price = 0;
+        let desc = '';
         let img = '';
         if (code === 'A') {
-          productName='Thực phẩm chức năng A'; price=500
+          productName='Thực phẩm chức năng A'; price=500000; desc='Hỗ trợ sức khỏe, bổ sung dinh dưỡng.'; img='https://via.placeholder.com/300x200';
+        }
+        if (code === 'B') {
+          productName='Mỹ phẩm B'; price=350000; desc='Dưỡng da, chăm sóc sắc đẹp tự nhiên.'; img='https://via.placeholder.com/300x200';
+        }
+        if (code === 'C') {
+          productName='Thực phẩm chức năng C'; price=450000; desc='Tăng cường sức đề kháng, tốt cho sức khỏe.'; img='https://via.placeholder.com/300x200';
+        }
+        let div = document.createElement('div');
+        div.className = 'product';
+        div.innerHTML = `<img src="${img}" alt="${productName}"><h3>${productName}</h3><p>${desc}</p><p>Đã đặt: ${count} lần</p><p>Giá: ${price.toLocaleString()} đ</p>`;
+        topContainer.appendChild(div);
+      }
+    });
+  }
+</script>
 
-
+</body>
+</html>
 
 
