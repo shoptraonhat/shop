@@ -106,7 +106,7 @@
       <p>Hỗ trợ sức khỏe, bổ sung dinh dưỡng.</p>
       <p class="stock">Còn trong kho: <span id="stock-A">10</span></p>
       <p>Giá: 500,000 đ</p>
-      <button class="btn" data-code="A" data-name="Thực phẩm chức năng A" data-price="500000">Thêm vào giỏ</button>
+      <button class="btn" onclick="addToCart('Thực phẩm chức năng A', 500000, 'A')">Thêm vào giỏ</button>
     </div>
     <div class="product">
       <img src="https://via.placeholder.com/300x200" alt="Mỹ phẩm Nhật">
@@ -114,7 +114,7 @@
       <p>Dưỡng da, chăm sóc sắc đẹp tự nhiên.</p>
       <p class="stock">Còn trong kho: <span id="stock-B">8</span></p>
       <p>Giá: 350,000 đ</p>
-      <button class="btn" data-code="B" data-name="Mỹ phẩm B" data-price="350000">Thêm vào giỏ</button>
+      <button class="btn" onclick="addToCart('Mỹ phẩm B', 350000, 'B')">Thêm vào giỏ</button>
     </div>
     <div class="product">
       <img src="https://via.placeholder.com/300x200" alt="Sản phẩm khác">
@@ -122,7 +122,7 @@
       <p>Tăng cường sức đề kháng, tốt cho sức khỏe.</p>
       <p class="stock">Còn trong kho: <span id="stock-C">5</span></p>
       <p>Giá: 450,000 đ</p>
-      <button class="btn" data-code="C" data-name="Thực phẩm chức năng C" data-price="450000">Thêm vào giỏ</button>
+      <button class="btn" onclick="addToCart('Thực phẩm chức năng C', 450000, 'C')">Thêm vào giỏ</button>
     </div>
   </div>
 </div>
@@ -142,7 +142,7 @@
       <input type="tel" id="customer-phone" placeholder="Số điện thoại" required>
       <input type="text" id="customer-address" placeholder="Địa chỉ" required>
     </div>
-    <button class="order-btn" id="place-order">Đặt hàng</button>
+    <button class="order-btn" onclick="placeOrder()">Đặt hàng</button>
     <div id="order-summary"></div>
   </div>
 </div>
@@ -318,5 +318,6 @@
 
 </body>
 </html>
+
 
 
