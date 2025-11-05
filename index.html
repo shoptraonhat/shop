@@ -392,40 +392,48 @@
   }
 
   function placeOrder() {
-    if (cart.length === 0) {
-      alert('Giỏ hàng của bạn đang trống!');
-      return;
-    }
-
-    let name = document.getElementById('customer-name').value.trim();
-    let phone = document.getElementById('customer-phone').value.trim();
-    let address = document.getElementById('customer-address').value.trim();
-
-    if (!name || !phone || !address) {
-      alert('Vui lòng nhập đầy đủ thông tin khách hàng!');
-      return;
-    }
-
-    let orderDetails = `Đơn hàng từ khách hàng: ${name}\nSĐT: ${phone}\nĐịa chỉ: ${address}\n\nSản phẩm:\n`;
-    let total = 0;
-    cart.forEach(item => {
-      orderDetails += `- ${item.product} x ${item.quantity} = ${(item.price*item.quantity).toLocaleString()} đ\n`;
-      total += item.price*item.quantity;
-      orderCount[item.code] += item.quantity;
-    });
-    orderDetails += `\nTổng đơn: ${total.toLocaleString()} đ`;
-
-    document.getElementById('order-summary').innerText = orderDetails;
-
-    renderTopProducts();
-
-    let zaloPhone = '0123456789';
-    let zaloUrl = `https://zalo.me/${zaloPhone}?text=${encodeURIComponent(orderDetails)}`;
-    window.open(zaloUrl, '_blank');
-
-    cart = [];
-    renderCart();
+  if (cart.length === 0) {
+    alert('Giỏ hàng của bạn đang trống!');
+    return;
   }
+
+  const name = document.getElementById('customer-name').value.trim();
+  const phone = document.getElementById('customer-phone').value.trim();
+  const address = document.getElementById('customer-address').value.trim();
+  const note = document.getElementById('customer-note') ? document.getElementById('customer-note').value.trim() : "";
+
+  if (!name || !phone || !address) {
+    alert('Vui lòng nhập đầy đủ thông tin!');
+    return;
+  }
+
+  let products = "";
+  let total = 0;
+  cart.forEach(item => {
+    products += `- ${item.product} x ${item.quantity} = ${(item.price * item.quantity).toLocaleString()} đ\n`;
+    total += item.price * item.quantity;
+  });
+
+  const orderData = { name, phone, address, products, total, note };
+
+  fetch("https://script.google.com/macros/s/AKfycbxW9XyzAbCDEFG12345/exec", { // 🟢 thay bằng link Web App của bạn
+    method: "POST",
+    body: JSON.stringify(orderData),
+    headers: { "Content-Type": "application/json" }
+  })
+  .then(res => res.text())
+  .then(text => {
+    if (text === "Success") {
+      alert("✅ Đặt hàng thành công! Shop sẽ liên hệ sớm.");
+      cart = [];
+      renderCart();
+    } else {
+      alert("❌ Có lỗi: " + text);
+    }
+  })
+  .catch(err => alert("Lỗi kết nối: " + err));
+}
+
 
   function renderTopProducts() {
     let sorted = Object.entries(orderCount).sort((a,b) => b[1]-a[1]);
@@ -458,5 +466,6 @@
 
 </body>
 </html>
+
 
 
