@@ -402,10 +402,10 @@ async function placeOrder() {
 
   try {
     const response = await fetch("https://script.google.com/macros/s/AKfycbxolufr5UghUmt2Gj8_iiXr4Zk0u3d2WaKsfn9zyyAMN7HXVsNEkdau9QHbQyJE3pxdmA/exec", {
-      method: "POST",
-      body: JSON.stringify(orderData),
-      headers: { "Content-Type": "application/json" }
-    });
+  method: "POST",
+  body: JSON.stringify(orderData),
+  headers: { "Content-Type": "application/json" }
+});
 
     const result = await response.text();
     alert("Đặt hàng thành công!");
@@ -446,6 +446,7 @@ async function placeOrder() {
 
 </body>
 </html>
+
 
 
 
