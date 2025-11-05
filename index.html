@@ -9,53 +9,11 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-    }
-
-    /* ===== HEADER ===== */
-    header {
-      background-color: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
-      padding: 15px 0;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      text-decoration: none;
       color: #333;
-      font-weight: 600;
-      font-size: 18px;
-      transition: color 0.3s;
     }
+    header { text-align: center; }
 
-    nav a:hover {
-      color: #c0392b;
-    }
-
-    .logo-center {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 3px solid #c0392b;
-      object-fit: cover;
-      margin: 0 10px;
-      transition: transform 0.3s;
-    }
-
-    .logo-center:hover {
-      transform: scale(1.1);
-    }
-
-    /* ===== ẢNH BÌA ===== */
+    /* === Ảnh bìa và logo === */
     .banner {
       position: relative;
       text-align: center;
@@ -66,58 +24,205 @@
       object-fit: cover;
       display: block;
     }
+    .logo-img {
+      position: absolute;
+      bottom: -75px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      border: 4px solid white;
+      border-radius: 50%;
+      background: white;
+    }
 
-    /* ===== NÚT GỌI & ZALO ===== */
+    /* === Thanh menu === */
+    nav {
+      background:#34495e;
+      padding:60px 10px 10px; /* thêm padding trên để tránh che logo */
+      text-align:center;
+    }
+    nav a {
+      color:#fff;
+      margin:0 15px;
+      text-decoration:none;
+      font-weight:bold;
+    }
+    nav a:hover { text-decoration:underline; }
+
+    /* === Nội dung chung === */
+    .container {
+      max-width:1000px;
+      margin:20px auto;
+      padding:0 15px;
+    }
+    h2 {color:#2c3e50; margin-bottom:10px;}
+
+    /* === Sản phẩm === */
+    .products {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+    .product {
+      background:#fff;
+      border-radius:10px;
+      box-shadow:0 2px 5px rgba(0,0,0,0.1);
+      padding:15px;
+      text-align:center;
+    }
+    .product img {max-width:100%; border-radius:10px;}
+    .product h3 {margin:10px 0; font-size:18px;}
+    .product p {color:#555; font-size:14px;}
+    .stock {color:#888; font-size:13px;}
+    .btn {
+      display:inline-block;
+      background:#27ae60;
+      color:#fff;
+      padding:10px 15px;
+      border-radius:5px;
+      margin-top:10px;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .btn:hover {background:#219150;}
+
+    /* === Giỏ hàng === */
+    #cart {
+      background:#fff;
+      border-radius:10px;
+      box-shadow:0 2px 5px rgba(0,0,0,0.1);
+      padding:15px;
+      margin-top:20px;
+    }
+    #cart ul {list-style:none; padding:0;}
+    #cart ul li {
+      padding:8px 0;
+      border-bottom:1px solid #ddd;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    #cart .total {font-weight:bold; margin-top:10px;}
+    .remove-btn {
+      background:#e74c3c;
+      color:#fff;
+      border:none;
+      padding:5px 10px;
+      border-radius:5px;
+      cursor:pointer;
+    }
+    .remove-btn:hover {background:#c0392b;}
+    .quantity-controls {
+      display:flex;
+      align-items:center;
+      gap:5px;
+    }
+    .quantity-btn {
+      padding:2px 8px;
+      background:#bdc3c7;
+      border:none;
+      border-radius:3px;
+      cursor:pointer;
+      font-size:16px;
+    }
+    .quantity-btn:hover {background:#95a5a6;}
+    .order-btn {
+      display:inline-block;
+      background:#2980b9;
+      color:#fff;
+      padding:10px 15px;
+      border-radius:5px;
+      margin-top:15px;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .order-btn:hover {background:#1f6391;}
+    .order-form {margin-top:15px;}
+    .order-form input {
+      width:100%;
+      padding:8px;
+      margin:5px 0;
+      border:1px solid #ccc;
+      border-radius:5px;
+    }
+    #order-summary {
+      margin-top:15px;
+      background:#f1f1f1;
+      padding:10px;
+      border-radius:8px;
+      white-space:pre-line;
+    }
+
+    /* === Nhân viên === */
+    .staff {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+    .staff-card {
+      background:#fff;
+      padding:15px;
+      border-radius:10px;
+      box-shadow:0 2px 5px rgba(0,0,0,0.1);
+      text-align:center;
+    }
+    .staff-card img {
+      border-radius:50%;
+      width:120px;
+      height:120px;
+      object-fit:cover;
+    }
+    .staff-card h3 {margin:10px 0;}
+    .staff-card p {font-size:14px; color:#555;}
+    .staff-card a {color:#2980b9; text-decoration:none;}
+    .staff-card a:hover {text-decoration:underline;}
+
+    /* === Nút gọi và Zalo === */
     .call-btn-fixed, .zalo-btn-fixed {
-      position:fixed; left:20px; padding:15px 20px; border-radius:50px;
-      text-decoration:none; font-weight:bold; box-shadow:0 4px 8px rgba(0,0,0,0.2);
-      z-index:1000; color:#fff; animation:bounce 2s infinite;
+      position:fixed;
+      left:20px;
+      padding:15px 20px;
+      border-radius:50px;
+      text-decoration:none;
+      font-weight:bold;
+      box-shadow:0 4px 8px rgba(0,0,0,0.2);
+      z-index:1000;
+      color:#fff;
+      animation:bounce 2s infinite;
     }
     .call-btn-fixed {bottom:80px; background:#e67e22;}
     .call-btn-fixed:hover {background:#ca6f1e;}
     .zalo-btn-fixed {bottom:20px; background:#0084ff;}
     .zalo-btn-fixed:hover {background:#006fd6;}
-
     @keyframes bounce {
-      0%, 100% {transform: translateY(0);}
-      50% {transform: translateY(-5px);}
+      0%,100% {transform:translateY(0);}
+      50% {transform:translateY(-5px);}
     }
 
-    /* ===== CHO MÀN HÌNH NHỎ ===== */
-    @media (max-width: 600px) {
-      nav {
-        gap: 20px;
-      }
-      .logo-center {
-        width: 60px;
-        height: 60px;
-      }
-      nav a {
-        font-size: 16px;
-      }
+    footer {
+      background:#2c3e50;
+      color:#fff;
+      text-align:center;
+      padding:15px;
+      margin-top:30px;
     }
   </style>
 </head>
+
 <body>
-  <!-- Thanh menu -->
   <header>
+    <div class="banner">
+      <img src="Ảnh nền.png" alt="Ảnh bìa Shop Trà ở Nhật" class="banner-img">
+      <img src="logoshop.png" alt="Logo Shop Trà ở Nhật" class="logo-img">
+    </div>
     <nav>
+      <a href="#home">Trang chủ</a>
       <a href="#sanpham">Sản phẩm</a>
       <a href="#giohang">Giỏ hàng</a>
-      <img src="logoshop.png" alt="Logo Shop Trà ở Nhật" class="logo-center">
       <a href="#nhanvien">Nhân viên</a>
       <a href="#lienhe">Liên hệ</a>
     </nav>
   </header>
-
-  <!-- Ảnh bìa -->
-  <div class="banner">
-    <img src="Ảnh nền.png" alt="Ảnh bìa Shop Trà ở Nhật" class="banner-img">
-  </div>
-
-  <!-- Nút gọi và Zalo -->
-  <a href="tel:0356216555" class="call-btn-fixed">📞 Gọi ngay</a>
-  <a href="https://zalo.me/0356216555" class="zalo-btn-fixed">💬 Chat Zalo</a>
 
   <div class="container" id="home">
     <h2>Chào mừng đến với Trà ở Nhật</h2>
@@ -353,4 +458,5 @@
 
 </body>
 </html>
+
 
