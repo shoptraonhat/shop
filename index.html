@@ -10,26 +10,52 @@
       margin: 0;
       padding: 0;
     }
-    header {
+    header { text-align: center; }
+
+    .banner {
+      position: relative;
       text-align: center;
     }
-    img {
-      border-radius: 10px;
+    .banner-img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+    .logo-img {
+      position: absolute;
+      bottom: -75px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      border: 4px solid white;
+      border-radius: 50%;
+      background: white;
+    }
+
+    .call-btn-fixed, .zalo-btn-fixed {
+      position:fixed; left:20px; padding:15px 20px; border-radius:50px;
+      text-decoration:none; font-weight:bold; box-shadow:0 4px 8px rgba(0,0,0,0.2);
+      z-index:1000; color:#fff; animation:bounce 2s infinite;
+    }
+    .call-btn-fixed {bottom:80px; background:#e67e22;}
+    .call-btn-fixed:hover {background:#ca6f1e;}
+    .zalo-btn-fixed {bottom:20px; background:#0084ff;}
+    .zalo-btn-fixed:hover {background:#006fd6;}
+
+    @keyframes bounce {
+      0%, 100% {transform: translateY(0);}
+      50% {transform: translateY(-5px);}
     }
   </style>
-  </body>
-</html>
+</head>
+<body>
   <header>
-    <img src="Ảnh nền.png" alt="Ảnh bìa Shop Trà ở Nhật" style="width:100%; max-height:400px; object-fit:cover;">
-    <img src="logoshop.png" alt="Logo Shop Trà ở Nhật" style="width:150px; margin-top:-80px; border:3px solid white; border-radius:50%;">
-    <nav>
-  <a href="#home">Trang chủ</a>
-  <a href="#sanpham">Sản phẩm</a>
-  <a href="#giohang">Giỏ hàng</a>
-  <a href="#nhanvien">Nhân viên</a>
-  <a href="#lienhe">Liên hệ</a>
-</nav>
+    <div class="banner">
+      <img src="Ảnh nền.png" alt="Ảnh bìa Shop Trà ở Nhật" class="banner-img">
+      <img src="logoshop.png" alt="Logo Shop Trà ở Nhật" class="logo-img">
+    </div>
   </header>
+
  <head>   
 <style>
     body {font-family: Arial, sans-serif; margin:0; padding:0; background:#fafafa; color:#333;}
@@ -70,14 +96,7 @@
     .staff-card p {font-size:14px; color:#555;}
     .staff-card a {color:#2980b9; text-decoration:none;}
     .staff-card a:hover {text-decoration:underline;}
-    .call-btn-fixed, .zalo-btn-fixed {
-      position:fixed; left:20px; padding:15px 20px; border-radius:50px; text-decoration:none; font-weight:bold; box-shadow:0 4px 8px rgba(0,0,0,0.2); z-index:1000; color:#fff;
-    }
-    .call-btn-fixed {bottom:80px; background:#e67e22;}
-    .call-btn-fixed:hover {background:#ca6f1e;}
-    .zalo-btn-fixed {bottom:20px; background:#0084ff;}
-    .zalo-btn-fixed:hover {background:#006fd6;}
-  </style>
+    
 </head>
 <body>
 <div class="container" id="home">
@@ -314,6 +333,7 @@
 
 </body>
 </html>
+
 
 
 
