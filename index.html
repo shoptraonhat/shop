@@ -323,96 +323,138 @@
   </footer>
 
   <script>
-    let cart = [];
-    let stock = { A: 10, B: 8, C: 5 };
-    let orderCount = { A: 0, B: 0, C: 0 };
+  let cart = [];
+  let stock = { A: 10, B: 8, C: 5 };
+  let orderCount = { A: 0, B: 0, C: 0 };
 
-    function addToCart(product, price, code) {
-      if (stock[code] <= 0) {
-        alert('Sản phẩm đã hết hàng!');
-        return;
-      }
-
-      let found = cart.find(item => item.code === code);
-      if (found) {
-        found.quantity++;
-      } else {
-        cart.push({product, price, code, quantity:1});
-      }
-      stock[code]--;
-      document.getElementById('stock-' + code).textContent = stock[code];
-      renderCart();
+  function addToCart(product, price, code) {
+    if (stock[code] <= 0) {
+      alert('Sản phẩm đã hết hàng!');
+      return;
     }
 
-    function changeQuantity(index, delta) {
-      let item = cart[index];
-      if (delta === 1 && stock[item.code] > 0) {
-        item.quantity++;
-        stock[item.code]--;
-      } else if (delta === -1) {
-        item.quantity--;
-        stock[item.code]++;
-        if (item.quantity <= 0) {
-          cart.splice(index, 1);
+    let found = cart.find(item => item.code === code);
+    if (found) {
+      found.quantity++;
+    } else {
+      cart.push({product, price, code, quantity:1});
+    }
+    stock[code]--;
+    document.getElementById('stock-' + code).textContent = stock[code];
+    renderCart();
+  }
+
+  function changeQuantity(index, delta) {
+    let item = cart[index];
+    if (delta === 1 && stock[item.code] > 0) {
+      item.quantity++;
+      stock[item.code]--;
+    } else if (delta === -1) {
+      item.quantity--;
+      stock[item.code]++;
+      if (item.quantity <= 0) {
+        cart.splice(index, 1);
+      }
+    }
+    document.getElementById('stock-' + item.code).textContent = stock[item.code];
+    renderCart();
+  }
+
+  function removeFromCart(index) {
+    let item = cart[index];
+    stock[item.code] += item.quantity;
+    document.getElementById('stock-' + item.code).textContent = stock[item.code];
+    cart.splice(index, 1);
+    renderCart();
+  }
+
+  function renderCart() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    cartItems.innerHTML = '';
+
+    let total = 0;
+    cart.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span>${item.product} - ${item.price.toLocaleString()} đ</span>
+        <div class="quantity-controls">
+          <button class="quantity-btn" onclick="changeQuantity(${index}, -1)">-</button>
+          <span>${item.quantity}</span>
+          <button class="quantity-btn" onclick="changeQuantity(${index}, 1)">+</button>
+          <button class="remove-btn" onclick="removeFromCart(${index})">Xóa</button>
+        </div>`;
+      cartItems.appendChild(li);
+      total += item.price * item.quantity;
+    });
+
+    cartTotal.textContent = total.toLocaleString();
+  }
+
+  function placeOrder() {
+    if (cart.length === 0) {
+      alert('Giỏ hàng của bạn đang trống!');
+      return;
+    }
+
+    let name = document.getElementById('customer-name').value.trim();
+    let phone = document.getElementById('customer-phone').value.trim();
+    let address = document.getElementById('customer-address').value.trim();
+
+    if (!name || !phone || !address) {
+      alert('Vui lòng nhập đầy đủ thông tin khách hàng!');
+      return;
+    }
+
+    let orderDetails = `Đơn hàng từ khách hàng: ${name}\nSĐT: ${phone}\nĐịa chỉ: ${address}\n\nSản phẩm:\n`;
+    let total = 0;
+    cart.forEach(item => {
+      orderDetails += `- ${item.product} x ${item.quantity} = ${(item.price*item.quantity).toLocaleString()} đ\n`;
+      total += item.price*item.quantity;
+      orderCount[item.code] += item.quantity;
+    });
+    orderDetails += `\nTổng đơn: ${total.toLocaleString()} đ`;
+
+    document.getElementById('order-summary').innerText = orderDetails;
+
+    renderTopProducts();
+
+    let zaloPhone = '0123456789';
+    let zaloUrl = `https://zalo.me/${zaloPhone}?text=${encodeURIComponent(orderDetails)}`;
+    window.open(zaloUrl, '_blank');
+
+    cart = [];
+    renderCart();
+  }
+
+  function renderTopProducts() {
+    let sorted = Object.entries(orderCount).sort((a,b) => b[1]-a[1]);
+    const topContainer = document.getElementById('top-products');
+    topContainer.innerHTML = '';
+
+    sorted.slice(0,3).forEach(([code, count]) => {
+      if (count > 0) {
+        let productName = '';
+        let price = 0;
+        let desc = '';
+        let img = '';
+        if (code === 'A') {
+          productName='Thực phẩm chức năng A'; price=500000; desc='Hỗ trợ sức khỏe, bổ sung dinh dưỡng.'; img='https://via.placeholder.com/300x200';
         }
+        if (code === 'B') {
+          productName='Mỹ phẩm B'; price=350000; desc='Dưỡng da, chăm sóc sắc đẹp tự nhiên.'; img='https://via.placeholder.com/300x200';
+        }
+        if (code === 'C') {
+          productName='Thực phẩm chức năng C'; price=450000; desc='Tăng cường sức đề kháng, tốt cho sức khỏe.'; img='https://via.placeholder.com/300x200';
+        }
+        let div = document.createElement('div');
+        div.className = 'product';
+        div.innerHTML = `<img src="${img}" alt="${productName}"><h3>${productName}</h3><p>${desc}</p><p>Đã đặt: ${count} lần</p><p>Giá: ${price.toLocaleString()} đ</p>`;
+        topContainer.appendChild(div);
       }
-      document.getElementById('stock-' + item.code).textContent = stock[item.code];
-      renderCart();
-    }
+    });
+  }
+</script>
 
-    function removeFromCart(index) {
-      let item = cart[index];
-      stock[item.code] += item.quantity;
-      document.getElementById('stock-' + item.code).textContent = stock[item.code];
-      cart.splice(index, 1);
-      renderCart();
-    }
-
-    function renderCart() {
-      const cartItems = document.getElementById('cart-items');
-      const cartTotal = document.getElementById('cart-total');
-      cartItems.innerHTML = '';
-
-      let total = 0;
-      cart.forEach((item, index) => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-          <span>${item.product} - ${item.price.toLocaleString()} đ</span>
-          <div class="quantity-controls">
-            <button class="quantity-btn" onclick="changeQuantity(${index}, -1)">-</button>
-            <span>${item.quantity}</span>
-            <button class="quantity-btn" onclick="changeQuantity(${index}, 1)">+</button>
-            <button class="remove-btn" onclick="removeFromCart(${index})">Xóa</button>
-          </div>`;
-        cartItems.appendChild(li);
-        total += item.price * item.quantity;
-      });
-
-      cartTotal.textContent = total.toLocaleString();
-    }
-
-    function placeOrder() {
-      if (cart.length === 0) {
-        alert('Giỏ hàng của bạn đang trống!');
-        return;
-      }
-
-      let name = document.getElementById('customer-name').value.trim();
-      let phone = document.getElementById('customer-phone').value.trim();
-      let address = document.getElementById('customer-address').value.trim();
-
-      if (!name || !phone || !address) {
-        alert('Vui lòng nhập đầy đủ thông tin khách hàng!');
-        return;
-      }
-
-      let orderDetails = `Đơn hàng từ khách hàng: ${name}\nSĐT: ${phone}\nĐịa chỉ: ${address}\n\nSản phẩm:\n`;
-      let total = 0;
-      cart.forEach(item => {
-        orderDetails += `- ${item.product} x ${item.quantity} = ${(item.price*item.quantity).toLocaleString()} đ\n`;
-        total += item.price*item.quantity;
-        orderCount[item.code] += item.quantity;
-      });
-      orderDetails += `\nTổng đơn: ${total.toLocaleString()} đ`;
-
-      document.getElementBy
+</body>
+</html>
