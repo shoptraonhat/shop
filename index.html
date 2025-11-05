@@ -9,9 +9,11 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      color: #333;
     }
     header { text-align: center; }
 
+    /* === Ảnh bìa và logo === */
     .banner {
       position: relative;
       text-align: center;
@@ -20,6 +22,7 @@
       width: 100%;
       height: 400px;
       object-fit: cover;
+      display: block;
     }
     .logo-img {
       position: absolute;
@@ -32,312 +35,384 @@
       background: white;
     }
 
+    /* === Thanh menu === */
+    nav {
+      background:#34495e;
+      padding:60px 10px 10px; /* thêm padding trên để tránh che logo */
+      text-align:center;
+    }
+    nav a {
+      color:#fff;
+      margin:0 15px;
+      text-decoration:none;
+      font-weight:bold;
+    }
+    nav a:hover { text-decoration:underline; }
+
+    /* === Nội dung chung === */
+    .container {
+      max-width:1000px;
+      margin:20px auto;
+      padding:0 15px;
+    }
+    h2 {color:#2c3e50; margin-bottom:10px;}
+
+    /* === Sản phẩm === */
+    .products {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+    .product {
+      background:#fff;
+      border-radius:10px;
+      box-shadow:0 2px 5px rgba(0,0,0,0.1);
+      padding:15px;
+      text-align:center;
+    }
+    .product img {max-width:100%; border-radius:10px;}
+    .product h3 {margin:10px 0; font-size:18px;}
+    .product p {color:#555; font-size:14px;}
+    .stock {color:#888; font-size:13px;}
+    .btn {
+      display:inline-block;
+      background:#27ae60;
+      color:#fff;
+      padding:10px 15px;
+      border-radius:5px;
+      margin-top:10px;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .btn:hover {background:#219150;}
+
+    /* === Giỏ hàng === */
+    #cart {
+      background:#fff;
+      border-radius:10px;
+      box-shadow:0 2px 5px rgba(0,0,0,0.1);
+      padding:15px;
+      margin-top:20px;
+    }
+    #cart ul {list-style:none; padding:0;}
+    #cart ul li {
+      padding:8px 0;
+      border-bottom:1px solid #ddd;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    #cart .total {font-weight:bold; margin-top:10px;}
+    .remove-btn {
+      background:#e74c3c;
+      color:#fff;
+      border:none;
+      padding:5px 10px;
+      border-radius:5px;
+      cursor:pointer;
+    }
+    .remove-btn:hover {background:#c0392b;}
+    .quantity-controls {
+      display:flex;
+      align-items:center;
+      gap:5px;
+    }
+    .quantity-btn {
+      padding:2px 8px;
+      background:#bdc3c7;
+      border:none;
+      border-radius:3px;
+      cursor:pointer;
+      font-size:16px;
+    }
+    .quantity-btn:hover {background:#95a5a6;}
+    .order-btn {
+      display:inline-block;
+      background:#2980b9;
+      color:#fff;
+      padding:10px 15px;
+      border-radius:5px;
+      margin-top:15px;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .order-btn:hover {background:#1f6391;}
+    .order-form {margin-top:15px;}
+    .order-form input {
+      width:100%;
+      padding:8px;
+      margin:5px 0;
+      border:1px solid #ccc;
+      border-radius:5px;
+    }
+    #order-summary {
+      margin-top:15px;
+      background:#f1f1f1;
+      padding:10px;
+      border-radius:8px;
+      white-space:pre-line;
+    }
+
+    /* === Nhân viên === */
+    .staff {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+    .staff-card {
+      background:#fff;
+      padding:15px;
+      border-radius:10px;
+      box-shadow:0 2px 5px rgba(0,0,0,0.1);
+      text-align:center;
+    }
+    .staff-card img {
+      border-radius:50%;
+      width:120px;
+      height:120px;
+      object-fit:cover;
+    }
+    .staff-card h3 {margin:10px 0;}
+    .staff-card p {font-size:14px; color:#555;}
+    .staff-card a {color:#2980b9; text-decoration:none;}
+    .staff-card a:hover {text-decoration:underline;}
+
+    /* === Nút gọi và Zalo === */
     .call-btn-fixed, .zalo-btn-fixed {
-      position:fixed; left:20px; padding:15px 20px; border-radius:50px;
-      text-decoration:none; font-weight:bold; box-shadow:0 4px 8px rgba(0,0,0,0.2);
-      z-index:1000; color:#fff; animation:bounce 2s infinite;
+      position:fixed;
+      left:20px;
+      padding:15px 20px;
+      border-radius:50px;
+      text-decoration:none;
+      font-weight:bold;
+      box-shadow:0 4px 8px rgba(0,0,0,0.2);
+      z-index:1000;
+      color:#fff;
+      animation:bounce 2s infinite;
     }
     .call-btn-fixed {bottom:80px; background:#e67e22;}
     .call-btn-fixed:hover {background:#ca6f1e;}
     .zalo-btn-fixed {bottom:20px; background:#0084ff;}
     .zalo-btn-fixed:hover {background:#006fd6;}
-
     @keyframes bounce {
-      0%, 100% {transform: translateY(0);}
-      50% {transform: translateY(-5px);}
+      0%,100% {transform:translateY(0);}
+      50% {transform:translateY(-5px);}
+    }
+
+    footer {
+      background:#2c3e50;
+      color:#fff;
+      text-align:center;
+      padding:15px;
+      margin-top:30px;
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="banner">
       <img src="Ảnh nền.png" alt="Ảnh bìa Shop Trà ở Nhật" class="banner-img">
       <img src="logoshop.png" alt="Logo Shop Trà ở Nhật" class="logo-img">
     </div>
+    <nav>
+      <a href="#home">Trang chủ</a>
+      <a href="#sanpham">Sản phẩm</a>
+      <a href="#giohang">Giỏ hàng</a>
+      <a href="#nhanvien">Nhân viên</a>
+      <a href="#lienhe">Liên hệ</a>
+    </nav>
   </header>
 
- <head>   
-<style>
-    body {font-family: Arial, sans-serif; margin:0; padding:0; background:#fafafa; color:#333;}
-    header {background:#2c3e50; color:#fff; padding:20px; text-align:center; position:relative;}
-    header h1 {margin:0; font-size:28px;}
-    nav {background:#34495e; padding:10px; text-align:center;}
-    nav a {color:#fff; margin:0 15px; text-decoration:none; font-weight:bold;}
-    nav a:hover {text-decoration:underline;}
-    .container {max-width:1000px; margin:20px auto; padding:0 15px;}
-    h2 {color:#2c3e50; margin-bottom:10px;}
-    .products {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
-    .product {background:#fff; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); padding:15px; text-align:center;}
-    .product img {max-width:100%; border-radius:10px;}
-    .product h3 {margin:10px 0; font-size:18px;}
-    .product p {color:#555; font-size:14px;}
-    .stock {color:#888; font-size:13px;}
-    .btn {display:inline-block; background:#27ae60; color:#fff; padding:10px 15px; border-radius:5px; margin-top:10px; text-decoration:none; cursor:pointer;}
-    .btn:hover {background:#219150;}
-    footer {background:#2c3e50; color:#fff; text-align:center; padding:15px; margin-top:30px;}
-    #cart {background:#fff; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); padding:15px; margin-top:20px;}
-    #cart ul {list-style:none; padding:0;}
-    #cart ul li {padding:8px 0; border-bottom:1px solid #ddd; display:flex; justify-content:space-between; align-items:center;}
-    #cart .total {font-weight:bold; margin-top:10px;}
-    .remove-btn {background:#e74c3c; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;}
-    .remove-btn:hover {background:#c0392b;}
-    .quantity-controls {display:flex; align-items:center; gap:5px;}
-    .quantity-btn {padding:2px 8px; background:#bdc3c7; border:none; border-radius:3px; cursor:pointer; font-size:16px;}
-    .quantity-btn:hover {background:#95a5a6;}
-    .order-btn {display:inline-block; background:#2980b9; color:#fff; padding:10px 15px; border-radius:5px; margin-top:15px; text-decoration:none; cursor:pointer;}
-    .order-btn:hover {background:#1f6391;}
-    .order-form {margin-top:15px;}
-    .order-form input {width:100%; padding:8px; margin:5px 0; border:1px solid #ccc; border-radius:5px;}
-    #order-summary {margin-top:15px; background:#f1f1f1; padding:10px; border-radius:8px; white-space:pre-line;}
-    .staff {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
-    .staff-card {background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); text-align:center;}
-    .staff-card img {border-radius:50%; width:120px; height:120px; object-fit:cover;}
-    .staff-card h3 {margin:10px 0;}
-    .staff-card p {font-size:14px; color:#555;}
-    .staff-card a {color:#2980b9; text-decoration:none;}
-    .staff-card a:hover {text-decoration:underline;}
-    
-</head>
-<body>
-<div class="container" id="home">
-  <h2>Chào mừng đến với Trà ở Nhật</h2>
-  <p>🛍️ Chúng mình sẽ mua sản phẩm đang được bán tại các cửa hàng ở Nhật và gửi về Việt Nam theo yêu cầu của quý khách ✈️🇯🇵➡️🇻🇳. Hãy yên tâm vì chúng mình luôn chọn lựa sản phẩm chính hãng, chất lượng và an toàn 💖.</p>
-</div>
+  <div class="container" id="home">
+    <h2>Chào mừng đến với Trà ở Nhật</h2>
+    <p>🛍️ Chúng mình sẽ mua sản phẩm đang được bán tại các cửa hàng ở Nhật và gửi về Việt Nam theo yêu cầu của quý khách ✈️🇯🇵➡️🇻🇳. Hãy yên tâm vì chúng mình luôn chọn lựa sản phẩm chính hãng, chất lượng và an toàn 💖.</p>
+  </div>
 
-<div class="container" id="dongchay">
-  <h2>Dòng chảy của đơn hàng</h2>
-  <p>📦 Các sản phẩm của quý khách sẽ được tìm kiếm và mua trực tiếp ở các cửa hàng tại Nhật Bản. <br>
-  ⏰ Chúng em sẽ chốt các đơn vào <strong>21h ngày 15 hàng tháng</strong>. <br>
-  🛒 Sau đó chúng em sẽ mua hàng, đóng gói và gửi về Việt Nam. <br>
-  🚚 Thời gian giao hàng dự kiến từ <strong>25 cùng tháng</strong> đến <strong>ngày 5 tháng sau</strong>.</p>
-</div>
+  <div class="container" id="dongchay">
+    <h2>Dòng chảy của đơn hàng</h2>
+    <p>📦 Các sản phẩm của quý khách sẽ được tìm kiếm và mua trực tiếp ở các cửa hàng tại Nhật Bản. <br>
+    ⏰ Chúng em sẽ chốt các đơn vào <strong>21h ngày 15 hàng tháng</strong>. <br>
+    🛒 Sau đó chúng em sẽ mua hàng, đóng gói và gửi về Việt Nam. <br>
+    🚚 Thời gian giao hàng dự kiến từ <strong>25 cùng tháng</strong> đến <strong>ngày 5 tháng sau</strong>.</p>
+  </div>
 
-<div class="container" id="sanpham">
-  <h2>Sản phẩm hiện có</h2>
-  <div class="products">
-    <div class="product">
-      <img src="https://via.placeholder.com/300x200" alt="Thực phẩm chức năng">
-      <h3>Thực phẩm chức năng A</h3>
-      <p>Hỗ trợ sức khỏe, bổ sung dinh dưỡng.</p>
-      <p class="stock">Còn trong kho: <span id="stock-A">10</span></p>
-      <p>Giá: 500,000 đ</p>
-      <button class="btn" onclick="addToCart('Thực phẩm chức năng A', 500000, 'A')">Thêm vào giỏ</button>
-    </div>
-    <div class="product">
-      <img src="https://via.placeholder.com/300x200" alt="Mỹ phẩm Nhật">
-      <h3>Mỹ phẩm B</h3>
-      <p>Dưỡng da, chăm sóc sắc đẹp tự nhiên.</p>
-      <p class="stock">Còn trong kho: <span id="stock-B">8</span></p>
-      <p>Giá: 350,000 đ</p>
-      <button class="btn" onclick="addToCart('Mỹ phẩm B', 350000, 'B')">Thêm vào giỏ</button>
-    </div>
-    <div class="product">
-      <img src="https://via.placeholder.com/300x200" alt="Sản phẩm khác">
-      <h3>Thực phẩm chức năng C</h3>
-      <p>Tăng cường sức đề kháng, tốt cho sức khỏe.</p>
-      <p class="stock">Còn trong kho: <span id="stock-C">5</span></p>
-      <p>Giá: 450,000 đ</p>
-      <button class="btn" onclick="addToCart('Thực phẩm chức năng C', 450000, 'C')">Thêm vào giỏ</button>
+  <div class="container" id="sanpham">
+    <h2>Sản phẩm hiện có</h2>
+    <div class="products">
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200" alt="Thực phẩm chức năng">
+        <h3>Thực phẩm chức năng A</h3>
+        <p>Hỗ trợ sức khỏe, bổ sung dinh dưỡng.</p>
+        <p class="stock">Còn trong kho: <span id="stock-A">10</span></p>
+        <p>Giá: 500,000 đ</p>
+        <button class="btn" onclick="addToCart('Thực phẩm chức năng A', 500000, 'A')">Thêm vào giỏ</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200" alt="Mỹ phẩm Nhật">
+        <h3>Mỹ phẩm B</h3>
+        <p>Dưỡng da, chăm sóc sắc đẹp tự nhiên.</p>
+        <p class="stock">Còn trong kho: <span id="stock-B">8</span></p>
+        <p>Giá: 350,000 đ</p>
+        <button class="btn" onclick="addToCart('Mỹ phẩm B', 350000, 'B')">Thêm vào giỏ</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x200" alt="Sản phẩm khác">
+        <h3>Thực phẩm chức năng C</h3>
+        <p>Tăng cường sức đề kháng, tốt cho sức khỏe.</p>
+        <p class="stock">Còn trong kho: <span id="stock-C">5</span></p>
+        <p>Giá: 450,000 đ</p>
+        <button class="btn" onclick="addToCart('Thực phẩm chức năng C', 450000, 'C')">Thêm vào giỏ</button>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="container" id="banchay">
-  <h2>Sản phẩm được đặt nhiều nhất</h2>
-  <div class="products" id="top-products"></div>
-</div>
-
-<div class="container" id="giohang">
-  <h2>Giỏ hàng</h2>
-  <div id="cart">
-    <ul id="cart-items"></ul>
-    <p class="total">Tổng: <span id="cart-total">0</span> đ</p>
-    <div class="order-form">
-      <input type="text" id="customer-name" placeholder="Họ và tên" required>
-      <input type="tel" id="customer-phone" placeholder="Số điện thoại" required>
-      <input type="text" id="customer-address" placeholder="Địa chỉ" required>
-    </div>
-    <button class="order-btn" onclick="placeOrder()">Đặt hàng</button>
-    <div id="order-summary"></div>
+  <div class="container" id="banchay">
+    <h2>Sản phẩm được đặt nhiều nhất</h2>
+    <div class="products" id="top-products"></div>
   </div>
-</div>
 
-<div class="container" id="nhanvien">
-  <h2>Đội ngũ nhân viên</h2>
-  <div class="staff">
-    <div class="staff-card">
-      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Nguyễn Văn Trà">
-      <h3>Nguyễn Văn Trà</h3>
-      <p>Vốn đầu tư</p>
-      <p>Zalo: <a href="https://zalo.me/0388965638" target="_blank">0388965638</a></p>
-      <p>Facebook: <a href="https://www.facebook.com/noidautodau.cauthauduocbao" target="_blank">facebook.com/noidautodau.cauthauduocbao</a></p>
-    </div>
-    <div class="staff-card">
-      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Nguyễn Hải Yến">
-      <h3>Nguyễn Hải Yến</h3>
-      <p>Chủ tịch hội đồng quản trị</p>
-      <p>Zalo: <a href="https://zalo.me/0356621655" target="_blank">0356621655</a></p>
-      <p>Facebook: <a href="https://www.facebook.com/hai.yen.235626" target="_blank">facebook.com/hai.yen.235626</a></p>
+  <div class="container" id="giohang">
+    <h2>Giỏ hàng</h2>
+    <div id="cart">
+      <ul id="cart-items"></ul>
+      <p class="total">Tổng: <span id="cart-total">0</span> đ</p>
+      <div class="order-form">
+        <input type="text" id="customer-name" placeholder="Họ và tên" required>
+        <input type="tel" id="customer-phone" placeholder="Số điện thoại" required>
+        <input type="text" id="customer-address" placeholder="Địa chỉ" required>
+      </div>
+      <button class="order-btn" onclick="placeOrder()">Đặt hàng</button>
+      <div id="order-summary"></div>
     </div>
   </div>
-</div>
 
-<div class="container" id="lienhe">
-  <h2>Liên hệ đặt hàng</h2>
-  <p>📩 Email: <a href="mailto:traonhatshop@gmail.com">traonhatshop@gmail.com</a></p>
-  <p>📱 Zalo: <a href="https://zalo.me/0388965638" target="_blank">0388965638</a></p>
-  <p>☎️ Hotline: <a href="tel:0356621655">0356621655</a></p>
-  <p>💬 Facebook: <a href="#">fb.com/shoptraonhat</a></p>
-</div>
+  <div class="container" id="nhanvien">
+    <h2>Đội ngũ nhân viên</h2>
+    <div class="staff">
+      <div class="staff-card">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Nguyễn Văn Trà">
+        <h3>Nguyễn Văn Trà</h3>
+        <p>Vốn đầu tư</p>
+        <p>Zalo: <a href="https://zalo.me/0388965638" target="_blank">0388965638</a></p>
+        <p>Facebook: <a href="https://www.facebook.com/noidautodau.cauthauduocbao" target="_blank">facebook.com/noidautodau.cauthauduocbao</a></p>
+      </div>
+      <div class="staff-card">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Nguyễn Hải Yến">
+        <h3>Nguyễn Hải Yến</h3>
+        <p>Chủ tịch hội đồng quản trị</p>
+        <p>Zalo: <a href="https://zalo.me/0356621655" target="_blank">0356621655</a></p>
+        <p>Facebook: <a href="https://www.facebook.com/hai.yen.235626" target="_blank">facebook.com/hai.yen.235626</a></p>
+      </div>
+    </div>
+  </div>
 
-<a class="call-btn-fixed" href="tel:0356621655">📞 Gọi ngay</a>
-<a class="zalo-btn-fixed" href="https://zalo.me/0388965638" target="_blank">💬 Chat Zalo</a>
+  <div class="container" id="lienhe">
+    <h2>Liên hệ đặt hàng</h2>
+    <p>📩 Email: <a href="mailto:traonhatshop@gmail.com">traonhatshop@gmail.com</a></p>
+    <p>📱 Zalo: <a href="https://zalo.me/0388965638" target="_blank">0388965638</a></p>
+    <p>☎️ Hotline: <a href="tel:0356621655">0356621655</a></p>
+    <p>💬 Facebook: <a href="#">fb.com/shoptraonhat</a></p>
+  </div>
 
-<footer>
-  <p>© 2025 Trà ở Nhật - All rights reserved</p>
-</footer>
+  <a class="call-btn-fixed" href="tel:0356621655">📞 Gọi ngay</a>
+  <a class="zalo-btn-fixed" href="https://zalo.me/0388965638" target="_blank">💬 Chat Zalo</a>
 
-<script>
-  let cart = [];
-  let stock = { A: 10, B: 8, C: 5 };
-  let orderCount = { A: 0, B: 0, C: 0 };
+  <footer>
+    <p>© 2025 Trà ở Nhật - All rights reserved</p>
+  </footer>
 
-  function addToCart(product, price, code) {
-    if (stock[code] <= 0) {
-      alert('Sản phẩm đã hết hàng!');
-      return;
-    }
+  <script>
+    let cart = [];
+    let stock = { A: 10, B: 8, C: 5 };
+    let orderCount = { A: 0, B: 0, C: 0 };
 
-    let found = cart.find(item => item.code === code);
-    if (found) {
-      found.quantity++;
-    } else {
-      cart.push({product, price, code, quantity:1});
-    }
-    stock[code]--;
-    document.getElementById('stock-' + code).textContent = stock[code];
-    renderCart();
-  }
-
-  function changeQuantity(index, delta) {
-    let item = cart[index];
-    if (delta === 1 && stock[item.code] > 0) {
-      item.quantity++;
-      stock[item.code]--;
-    } else if (delta === -1) {
-      item.quantity--;
-      stock[item.code]++;
-      if (item.quantity <= 0) {
-        cart.splice(index, 1);
+    function addToCart(product, price, code) {
+      if (stock[code] <= 0) {
+        alert('Sản phẩm đã hết hàng!');
+        return;
       }
-    }
-    document.getElementById('stock-' + item.code).textContent = stock[item.code];
-    renderCart();
-  }
 
-  function removeFromCart(index) {
-    let item = cart[index];
-    stock[item.code] += item.quantity;
-    document.getElementById('stock-' + item.code).textContent = stock[item.code];
-    cart.splice(index, 1);
-    renderCart();
-  }
-
-  function renderCart() {
-    const cartItems = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-    cartItems.innerHTML = '';
-
-    let total = 0;
-    cart.forEach((item, index) => {
-      const li = document.createElement('li');
-      li.innerHTML = `
-        <span>${item.product} - ${item.price.toLocaleString()} đ</span>
-        <div class="quantity-controls">
-          <button class="quantity-btn" onclick="changeQuantity(${index}, -1)">-</button>
-          <span>${item.quantity}</span>
-          <button class="quantity-btn" onclick="changeQuantity(${index}, 1)">+</button>
-          <button class="remove-btn" onclick="removeFromCart(${index})">Xóa</button>
-        </div>`;
-      cartItems.appendChild(li);
-      total += item.price * item.quantity;
-    });
-
-    cartTotal.textContent = total.toLocaleString();
-  }
-
-  function placeOrder() {
-    if (cart.length === 0) {
-      alert('Giỏ hàng của bạn đang trống!');
-      return;
-    }
-
-    let name = document.getElementById('customer-name').value.trim();
-    let phone = document.getElementById('customer-phone').value.trim();
-    let address = document.getElementById('customer-address').value.trim();
-
-    if (!name || !phone || !address) {
-      alert('Vui lòng nhập đầy đủ thông tin khách hàng!');
-      return;
-    }
-
-    let orderDetails = `Đơn hàng từ khách hàng: ${name}\nSĐT: ${phone}\nĐịa chỉ: ${address}\n\nSản phẩm:\n`;
-    let total = 0;
-    cart.forEach(item => {
-      orderDetails += `- ${item.product} x ${item.quantity} = ${(item.price*item.quantity).toLocaleString()} đ\n`;
-      total += item.price*item.quantity;
-      orderCount[item.code] += item.quantity;
-    });
-    orderDetails += `\nTổng đơn: ${total.toLocaleString()} đ`;
-
-    document.getElementById('order-summary').innerText = orderDetails;
-
-    renderTopProducts();
-
-    let zaloPhone = '0123456789';
-    let zaloUrl = `https://zalo.me/${zaloPhone}?text=${encodeURIComponent(orderDetails)}`;
-    window.open(zaloUrl, '_blank');
-
-    cart = [];
-    renderCart();
-  }
-
-  function renderTopProducts() {
-    let sorted = Object.entries(orderCount).sort((a,b) => b[1]-a[1]);
-    const topContainer = document.getElementById('top-products');
-    topContainer.innerHTML = '';
-
-    sorted.slice(0,3).forEach(([code, count]) => {
-      if (count > 0) {
-        let productName = '';
-        let price = 0;
-        let desc = '';
-        let img = '';
-        if (code === 'A') {
-          productName='Thực phẩm chức năng A'; price=500000; desc='Hỗ trợ sức khỏe, bổ sung dinh dưỡng.'; img='https://via.placeholder.com/300x200';
-        }
-        if (code === 'B') {
-          productName='Mỹ phẩm B'; price=350000; desc='Dưỡng da, chăm sóc sắc đẹp tự nhiên.'; img='https://via.placeholder.com/300x200';
-        }
-        if (code === 'C') {
-          productName='Thực phẩm chức năng C'; price=450000; desc='Tăng cường sức đề kháng, tốt cho sức khỏe.'; img='https://via.placeholder.com/300x200';
-        }
-        let div = document.createElement('div');
-        div.className = 'product';
-        div.innerHTML = `<img src="${img}" alt="${productName}"><h3>${productName}</h3><p>${desc}</p><p>Đã đặt: ${count} lần</p><p>Giá: ${price.toLocaleString()} đ</p>`;
-        topContainer.appendChild(div);
+      let found = cart.find(item => item.code === code);
+      if (found) {
+        found.quantity++;
+      } else {
+        cart.push({product, price, code, quantity:1});
       }
-    });
-  }
-</script>
+      stock[code]--;
+      document.getElementById('stock-' + code).textContent = stock[code];
+      renderCart();
+    }
 
-</body>
-</html>
+    function changeQuantity(index, delta) {
+      let item = cart[index];
+      if (delta === 1 && stock[item.code] > 0) {
+        item.quantity++;
+        stock[item.code]--;
+      } else if (delta === -1) {
+        item.quantity--;
+        stock[item.code]++;
+        if (item.quantity <= 0) {
+          cart.splice(index, 1);
+        }
+      }
+      document.getElementById('stock-' + item.code).textContent = stock[item.code];
+      renderCart();
+    }
 
+    function removeFromCart(index) {
+      let item = cart[index];
+      stock[item.code] += item.quantity;
+      document.getElementById('stock-' + item.code).textContent = stock[item.code];
+      cart.splice(index, 1);
+      renderCart();
+    }
 
+    function renderCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      cartItems.innerHTML = '';
 
+      let total = 0;
+      cart.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${item.product} - ${item.price.toLocaleString()} đ</span>
+          <div class="quantity-controls">
+            <button class="quantity-btn" onclick="changeQuantity(${index}, -1)">-</button>
+            <span>${item.quantity}</span>
+            <button class="quantity-btn" onclick="changeQuantity(${index}, 1)">+</button>
+            <button class="remove-btn" onclick="removeFromCart(${index})">Xóa</button>
+          </div>`;
+        cartItems.appendChild(li);
+        total += item.price * item.quantity;
+      });
 
+      cartTotal.textContent = total.toLocaleString();
+    }
 
+    function placeOrder() {
+      if (cart.length === 0) {
+        alert('Giỏ hàng của bạn đang trống!');
+        return;
+      }
 
+      let name = document.getElementById('customer-name').value.trim();
+      let phone = document.getElementById('customer-phone').value.trim();
+      let address = document.getElementById('customer-address').value.trim();
 
+      if (!name || !phone || !address) {
+        alert('Vui lòng nhập đầy đủ thông tin khách hàng!');
+        return;
+      }
 
+      let orderDetails = `Đơn hàng từ khách hàng: ${name}\nSĐT: ${phone}\nĐịa chỉ: ${address}\n\nSản phẩm:\n`;
+      let total = 0;
+      cart.forEach(item => {
+        orderDetails += `- ${item.product} x ${item.quantity} = ${(item.price*item.quantity).toLocaleString()} đ\n`;
+        total += item.price*item.quantity;
+        orderCount[item.code] += item.quantity;
+      });
+      orderDetails += `\nTổng đơn: ${total.toLocaleString()} đ`;
+
+      document.getElementBy
